@@ -1,0 +1,544 @@
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Feb 17 14:57:46 2023
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Enter user-name: cce138@ictorcl
+Enter password:
+Last Successful login time: Fri Feb 17 2023 14:54:47 +05:30
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> create table persons(
+  2  driverid varchar(10),
+  3  name varchar(10),
+  4  address varchar(10),
+  5  primary key(driverid));
+
+Table created.
+
+SQL> create table cars(
+  2  regno varchar(10),
+  3  model varchar(10),
+  4  year int,
+  5  primary key(regno));
+
+Table created.
+
+SQL> create table incidents(
+  2  report_number int,
+  3  accd_date date,
+  4  location varchar(10),
+  5  primary key(report_number));
+
+Table created.
+
+SQL> create table owners(
+  2  driverid varchar(10),
+  3  regno varchar(10),
+  4  primary key(driverid));
+
+Table created.
+
+SQL> create table participant(
+  2  driverid varchar(10),
+  3  regno varchar(10),
+  4  report_number int,
+  5  damage_amount int,
+  6  primary key(driverid));
+
+Table created.
+
+SQL> insert into persons
+  2  values('123','Atharva','CBD');
+
+1 row created.
+
+SQL> insert into persons
+  2  values('
+  3
+SQL> insert into persons
+  2  values('124','Sahil','Nerul);
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> insert into persons
+  2  values('124','Sahil','Nerul');
+
+1 row created.
+
+SQL> insert into persons
+  2  values('125','Bhavya
+  3
+SQL> insert into persons
+  2  values('125',
+  3
+SQL> insert into persons
+  2  values('125,'Bhavya','Vashi');
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> insert into persons
+  2  values('125','Bhavya','Vashi');
+
+1 row created.
+
+SQL> insert into persons
+  2  values('126','Keshav','Kkhairne');
+
+1 row created.
+
+SQL> insert into persons
+  2  values('127','Jatin','Kkhairne');
+
+1 row created.
+
+SQL> insert into cars
+  2  values('1000','Q3','2022');
+
+1 row created.
+
+SQL> insert into cars
+  2  values('1002','R8','2021');
+
+1 row created.
+
+SQL> insert into cars
+  2  values('1004','Mustang','2023');
+
+1 row created.
+
+SQL> insert into cars
+  2  values('1006','Carrera','2022');
+
+1 row created.
+
+SQL> insert into cars
+  2  values('1008','DB7','2023');
+
+1 row created.
+
+SQL> insert into incidents
+  2  values('100','2020-11-02');
+insert into incidents
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into incidents
+  2  values('100','12 Mar 2020','Pune');
+
+1 row created.
+
+SQL> insert into incidents
+  2  values('102','16 Jan 2021','Mumbai');
+
+1 row created.
+
+SQL> insert into incidents
+  2  values('104','18 Feb 2022','Delhi');
+
+1 row created.
+
+SQL> insert into incidents
+  2  values('106','20 Jun 2021','Mumbai');
+
+1 row created.
+
+SQL> insert into incidents
+  2  values('108','25 May 2022','Mumbai');
+
+1 row created.
+
+SQL> insert into owners
+  2  values('123','1000');
+
+1 row created.
+
+SQL> insert into owners
+  2  values('124','1002');
+
+1 row created.
+
+SQL> insert into owners
+  2  values('125','1004');
+
+1 row created.
+
+SQL> insert into owners
+  2  values('126','1006');
+
+1 row created.
+
+SQL> insert into owners
+  2  values('127','1008');
+
+1 row created.
+
+SQL> insert into participants
+  2  values(
+  3
+SQL> insert into participant
+  2  values('123','1000','100');
+insert into participant
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into participants
+  2  values('123','1000',100',
+  3
+SQL> insert into participant
+  2  values('123',
+  3
+SQL>
+SQL> insert into participant
+  2  values('123','1000','100','1500');
+
+1 row created.
+
+SQL> insert into participant
+  2  values('124','1002','102','3000');
+
+1 row created.
+
+SQL> insert into participant
+  2  values('126','1004','104','3200');
+
+1 row created.
+
+SQL> insert into participant
+  2  values('125','1008','106','3500');
+
+1 row created.
+
+SQL> insert into participant
+  2  values('127','1006','108','4000');
+
+1 row created.
+
+SQL>
+SQL> update participant
+  2  set damage_amount = 25000
+  3  where report_number = 100
+  4
+SQL> update participant
+  2  set damage_amount = 25000;
+
+5 rows updated.
+
+SQL> update participant
+  2  set damage_amount = 20000;
+
+5 rows updated.
+
+SQL> update participant
+  2  set damage_amount = 30000
+  3  where report_number= 102;
+
+1 row updated.
+
+SQL> delete from incidents
+  2  where accd_date = 12 Mar 2020;
+where accd_date = 12 Mar 2020
+                     *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> delete from incidents
+  2  where accd_date = '12 Mar 2020';
+
+1 row deleted.
+
+SQL> alter table cars
+  2
+SQL> alter table cars add value int;
+
+Table altered.
+
+SQL> insert into cars
+  2  values
+  3
+SQL> select * from cars
+  2
+SQL>
+SQL> select *
+  2  from cars
+  3
+SQL> select *
+  2  from cars;
+
+REGNO      MODEL            YEAR      VALUE
+---------- ---------- ---------- ----------
+1000       Q3               2022
+1002       R8               2021
+1004       Mustang          2023
+1006       Carrera          2022
+1008       DB7              2023
+
+SQL> insert into cars
+  2  values(,,,'1cr');
+values(,,,'1cr')
+       *
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> alter table cars
+  2
+SQL> insert into cars
+  2  (value) values('1cr');
+insert into cars
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("CCE138"."CARS"."REGNO")
+
+
+SQL> update cars
+  2  set value = '1cr'
+  3  where regno = 1000;
+set value = '1cr'
+            *
+ERROR at line 2:
+ORA-01722: invalid number
+
+
+SQL> update cars
+  2  set value = 1000000
+  3  where regno = 1000;
+
+1 row updated.
+
+SQL> select *
+  2  from cars
+  3  ;
+
+REGNO      MODEL            YEAR      VALUE
+---------- ---------- ---------- ----------
+1000       Q3               2022    1000000
+1002       R8               2021
+1004       Mustang          2023
+1006       Carrera          2022
+1008       DB7              2023
+
+SQL> alter table cars
+  2
+SQL>
+SQL> alter table cars add state
+  2  ;
+alter table cars add state
+                     *
+ERROR at line 1:
+ORA-02263: need to specify the datatype for this column
+
+
+SQL> alter table cars add state varchar(20);
+
+Table altered.
+
+SQL> select *
+  2  from cars;
+
+REGNO      MODEL            YEAR      VALUE STATE
+---------- ---------- ---------- ---------- --------------------
+1000       Q3               2022    1000000
+1002       R8               2021
+1004       Mustang          2023
+1006       Carrera          2022
+1008       DB7              2023
+
+SQL> alter table drop column state;
+alter table drop column state
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> alter table cars drop column state;
+
+Table altered.
+
+SQL> select *
+  2  from cars;
+
+REGNO      MODEL            YEAR      VALUE
+---------- ---------- ---------- ----------
+1000       Q3               2022    1000000
+1002       R8               2021
+1004       Mustang          2023
+1006       Carrera          2022
+1008       DB7              2023
+
+SQL> alter table add Check varchar(5);
+alter table add Check varchar(5)
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> alter table cars add Check varchar(5);
+alter table cars add Check varchar(5)
+                           *
+ERROR at line 1:
+ORA-00906: missing left parenthesis
+
+
+SQL> alter cars add check varchar(5);
+alter cars add check varchar(5)
+      *
+ERROR at line 1:
+ORA-00940: invalid ALTER command
+
+
+SQL> alter table cars check varchar(5);
+alter table cars check varchar(5)
+                 *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table cars add checked varchar(5);
+
+Table altered.
+
+SQL> select *
+  2  from cars;
+
+REGNO      MODEL            YEAR      VALUE CHECK
+---------- ---------- ---------- ---------- -----
+1000       Q3               2022    1000000
+1002       R8               2021
+1004       Mustang          2023
+1006       Carrera          2022
+1008       DB7              2023
+
+SQL> update cars
+  2  set value = 2000000
+  3  where regno = 1002;
+
+1 row updated.
+
+SQL> select *
+  2  from cars;
+
+REGNO      MODEL            YEAR      VALUE CHECK
+---------- ---------- ---------- ---------- -----
+1000       Q3               2022    1000000
+1002       R8               2021    2000000
+1004       Mustang          2023
+1006       Carrera          2022
+1008       DB7              2023
+
+SQL> update cars
+  2  set value = 4000000
+  3  where regno = 1004;
+
+1 row updated.
+
+SQL> select *
+  2  from cars;
+
+REGNO      MODEL            YEAR      VALUE CHECK
+---------- ---------- ---------- ---------- -----
+1000       Q3               2022    1000000
+1002       R8               2021    2000000
+1004       Mustang          2023    4000000
+1006       Carrera          2022
+1008       DB7              2023
+
+SQL> update cars
+  2  set value = 25000000
+  3  where regno = 1004
+  4  ;
+
+1 row updated.
+
+SQL> update cars
+  2  set value = 3000000
+  3  where regno = 1006;
+
+1 row updated.
+
+SQL> update cars
+  2  set value = 5000000
+  3  where regno = 1008;
+
+1 row updated.
+
+SQL> select *
+  2  from cars;
+
+REGNO      MODEL            YEAR      VALUE CHECK
+---------- ---------- ---------- ---------- -----
+1000       Q3               2022    1000000
+1002       R8               2021    2000000
+1004       Mustang          2023   25000000
+1006       Carrera          2022    3000000
+1008       DB7              2023    5000000
+
+SQL> alter table drop column check;
+alter table drop column check
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> alter table cars drop column check;
+alter table cars drop column check
+                             *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL> alter table cars drop column Check;
+alter table cars drop column Check
+                             *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL> update cars
+  2  set Check = 'Yes'
+  3  where regno = 1000;
+set Check = 'Yes'
+    *
+ERROR at line 2:
+ORA-01747: invalid user.table.column, table.column, or column specification
+
+
+SQL> update cars
+  2  set Check = 'Yes'
+  3  where regno = 1000;
+set Check = 'Yes'
+    *
+ERROR at line 2:
+ORA-01747: invalid user.table.column, table.column, or column specification
+
+
+SQL> update cars
+  2  set Check  = 'yes'
+  3  where regno = 1000
+  4  ;
+set Check  = 'yes'
+    *
+ERROR at line 2:
+ORA-01747: invalid user.table.column, table.column, or column specification
+
+
+SQL> update cars
+  2  set check  = 'yes'
+  3  where regno = 1000;
+set check  = 'yes'
+    *
+ERROR at line 2:
+ORA-01747: invalid user.table.column, table.column, or column specification
+
+
+SQL>
