@@ -1,0 +1,56 @@
+SQL> select count (distinct driverid)
+  2  from participant natural join accident
+  3  where extract(year from accd_date) = '2022';
+
+COUNT(DISTINCTDRIVERID)
+-----------------------
+                      0
+
+SQL> select count (distict driverid)
+  2  from participant natural join incidents
+  3  where extract(year from accd_date) = '2022';
+select count (distict driverid)
+                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select count (distinct driverid)
+  2  from participant natural join incidents
+  3  where extract(year from accd_date)  = '2022';
+
+COUNT(DISTINCTDRIVERID)
+-----------------------
+                      2
+
+SQL> select count (report_numnber)
+  2
+SQL>
+SQL> select count (report_number)
+  2  from incidents natural join participant natural join cars
+  3  where cars.model like '%Mustang%';
+
+COUNT(REPORT_NUMBER)
+--------------------
+                   1
+
+
+SQL> select driverid
+  2  from participant natural join incidents
+  3  where extract(year from accd_date) = '2022'
+  4  having count(report_number) > 1
+  5  group by driverid;
+
+no rows selected
+
+SQL> select name from person
+  2  minus
+  3  select name from person natural join participant;
+
+no rows selected
+
+SQL> 
+
+
+
+
